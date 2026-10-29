@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>istina-frame · registar poziva</title>
+<meta property="fc:frame" content='{"version":"1","imageUrl":"https://3esign.github.io/istina-frame/og-image.png","button":{"title":"Zapiši svoj poziv","action":{"type":"launch_miniapp","url":"https://3esign.github.io/istina-frame/"}}}'>
+<style>
+  body{font-family:system-ui,sans-serif;margin:0;background:#0b0e14;color:#e8e8f0;max-width:32rem;margin:0 auto;padding:1.25rem}
+  h1{font-size:1.2rem} code{color:#7dd3fc;word-break:break-all}
+  .zapis{border:1px solid #26304a;border-radius:.6rem;padding:.75rem;margin:.5rem 0}
+  .tag{color:#a3e635;font-size:.75rem}
+  button{background:#3b5bdb;color:#fff;border:0;border-radius:.5rem;padding:.7rem 1rem;font-size:1rem;width:100%;margin-top:1rem}
+</style>
+</head>
+<body>
+<h1>istina-frame</h1>
+<p>Zapiši svoj poziv <em>pre</em> ishoda. FID + cast + vreme, zapečaćeno na Base-u, vidljivo svima.</p>
+
+<div id="registr">
+  <!-- privremeno: statički izvoz iz kontrakta; kasnije read preko RPC -->
+  <div class="zapis"><span class="tag">rung #0 ogled</span><br>„primer poziva" — <code>0x…zapis</code></div>
+</div>
+
+<button id="plati">Zapiši poziv · 0,01 USDC</button>
+<p style="font-size:.75rem;color:#8b93a7">Plaćaš svojim novčanikom direktno na Base. Bez posrednika.</p>
+
+<script>
+// Faza 0 (ovaj fajl): statički skelet — dugme još ne plaća.
+// Faza 1: wallet action → EIP-3009 transferWithAuthorization ka RegistarPoziva.sol
+// Faza 2: read getLogs → popuni #registr živim zapisima
+document.getElementById('plati').onclick = () => alert('Skelet: plaćanje se aktivira u fazi 1.');
+</script>
+</body>
+</html>
