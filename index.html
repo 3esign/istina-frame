@@ -22,14 +22,28 @@
   <div class="zapis"><span class="tag">rung #0 ogled</span><br>„primer poziva" — <code>0x…zapis</code></div>
 </div>
 
+<button id="dodaj">➕ Dodaj u Farcaster</button>
 <button id="plati">Zapiši poziv · 0,01 USDC</button>
 <p style="font-size:.75rem;color:#8b93a7">Plaćaš svojim novčanikom direktno na Base. Bez posrednika.</p>
 
-<script>
-// Faza 0 (ovaj fajl): statički skelet — dugme još ne plaća.
+<script type="module">
+import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk';
+
+// Kapija 6: addMiniApp → Save u Your Apps. Prvo pravo stanje, ne skelet.
+document.getElementById('dodaj').onclick = async () => {
+  try {
+    await sdk.actions.addMiniApp();
+  } catch (e) {
+    alert('Dodavanje nije prošlo: ' + (e?.message || e));
+  }
+};
+
+// Faza 0: dugme još ne plaća.
 // Faza 1: wallet action → EIP-3009 transferWithAuthorization ka RegistarPoziva.sol
 // Faza 2: read getLogs → popuni #registr živim zapisima
 document.getElementById('plati').onclick = () => alert('Skelet: plaćanje se aktivira u fazi 1.');
+
+sdk.actions.ready();
 </script>
 </body>
 </html>
